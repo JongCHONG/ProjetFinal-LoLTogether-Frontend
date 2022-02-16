@@ -35,7 +35,7 @@ const Separator = styled.div`
 `
 const SideDiv = styled.div`
   left: 10%;
-  top: 20%;
+  top: 10%;
   position: absolute;
   font-size: 20px;
   width: 30%;
@@ -47,6 +47,7 @@ const ErrorForm = styled.div`
   color: red;
   font-weight: bold;
   display: block;
+  font-size: 16px;
 `
 
 const Login = () => {
@@ -109,7 +110,7 @@ const Login = () => {
               animate={{ x: 0 }} 
             >
               <Logo />
-              <Title text="Connexion" size='72'/>
+              <Title text="Connexion" size='64'/>
               <ErrorForm>
                 {errorLogin && errorLogin}
               </ErrorForm>
@@ -130,7 +131,7 @@ const Login = () => {
                     {formik.errors.username}
                   </ErrorForm>
                 </div>
-                <div className="mb-5">
+                <div className="">
                   <label className="form-label">Mot de passe</label>
                   <input 
                     type="password" 

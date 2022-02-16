@@ -27,20 +27,9 @@ const Header = styled.div`
   height: 65vh;
   background-repeat: no-repeat;
   background-size: cover;
-  positive: relative;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-`
-const LogoTitle = styled.div`
-  left: 35%;
-  top: 20%;
-  position: absolute;
-  font-size: 20px;
-  width: 45%;
-  .p2 {
-    font-size: 15px;
-  }
+  align-items: center;
+  justify-content: center;
 `
 const Emblem = styled.div`
   text-align : center;
@@ -121,15 +110,13 @@ const UserProfile = () => {
         exit={{ opacity: 0 }}
       >
         <Header>
-          <LogoTitle>
-              <motion.div
-                style={{ x: 100 }} 
-                animate={{ x: 0 }}          
-              >
-                <Logo />
-                <Title text={`${profile.summoner_name}`} size='64'/>
-              </motion.div>
-            </LogoTitle>
+            <motion.div
+              style={{ x: 100 }} 
+              animate={{ x: 0 }}          
+            >
+              <Logo />
+              <Title text={`${profile.summoner_name}`} size='64'/>
+            </motion.div>
         </Header>
         <Middle>
           <div className='container'>
@@ -148,7 +135,7 @@ const UserProfile = () => {
                   <p>{lolStats.length !== 0  && lolStats[1].tier} {lolStats.length !== 0 && lolStats[1].rank}</p>
                   {emblem ? 
                     <Emblem>
-                      <img src={`${emblem}`} /> 
+                      <img src={`${emblem}`} alt="emblem"/> 
                     </Emblem>
                   :
                     <div className='mx-5 fw-bold'>
@@ -165,10 +152,10 @@ const UserProfile = () => {
                     </div>
                   </div>
                   <SocialIcons>
-                    <a href="#"><RiTwitterLine  style={IconStyle} size="15%"/></a>
-                    <a href="#"><RiFacebookLine  style={IconStyle} size="15%"/></a>
-                    <a href="#"><RiInstagramLine  style={IconStyle} size="15%"/></a>
-                    <a href="#"><RiGithubLine  style={IconStyle} size="15%"/></a>
+                    <a href="https://twitter.com/LeagueOfLegends"><RiTwitterLine  style={IconStyle} size="15%"/></a>
+                    <a href="https://www.facebook.com/leagueoflegends/"><RiFacebookLine  style={IconStyle} size="15%"/></a>
+                    <a href="https://www.instagram.com/leagueoflegends/?hl=fr"><RiInstagramLine  style={IconStyle} size="15%"/></a>
+                    <a href="https://github.com/"><RiGithubLine  style={IconStyle} size="15%"/></a>
                   </SocialIcons>
                   {teamLeader &&
                     <div>
@@ -187,7 +174,7 @@ const UserProfile = () => {
                     </>
                       // <button className="btn draw-border">Contacter</button>
                     }
-                  {user &&
+                  {user && user._id === id &&
                     <Link to={`/teamcreation`} className='btn draw-border'>Créer votre équipe</Link>
                   }
                 </div>

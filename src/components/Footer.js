@@ -9,7 +9,7 @@ import Title from './Title'
 const FooterBackground = styled.div`
   background-color: black;
   margin: 3%;
-  margin-top: 150px;
+  // margin-top: 150px;
 `
 const FooterBackgroundRow = styled.div`
   display: flex;
@@ -93,7 +93,7 @@ const Footer = () => {
             <li><a href="https://www.instagram.com/leagueoflegends/?hl=fr"><RiInstagramLine /></a></li>
             <li><a href="https://www.facebook.com/leagueoflegends/"><RiFacebookLine /></a></li>
             <li><a href="https://www.twitch.tv/directory/game/League%20of%20Legends"><RiTwitchFill  /></a></li>
-            <li><a href="https://github.com/JongCHONG"><RiGithubLine /></a></li>
+            <li><a href="https://github.com/"><RiGithubLine /></a></li>
           </ul>
         </IconsList>
       </div>
