@@ -20,22 +20,22 @@ const UserCard = ({ id, username, summoner_name, discord, region, languages, dis
   const [lolProfile, setLolProfile] = useState(null)
 
   useEffect(() => {
+      const fetchLolProfile = async () => {
+        try {
+          const lolProfile = await getLolProfile(summoner_name)    
+          setLolProfile(lolProfile)
+          const lolStats = await getLolStats(lolProfile.id)
+          const emblem = getEmblem(lolStats[1].tier)
+          
+          setEmblem(emblem)   
+        } catch (error) {
+          setNotRanked("Not Ranked")
+        }
+      }  
       fetchLolProfile()
-  }, [])
+  }, [summoner_name])
 
   
-  const fetchLolProfile = async () => {
-    try {
-      const lolProfile = await getLolProfile(summoner_name)    
-      setLolProfile(lolProfile)
-      const lolStats = await getLolStats(lolProfile.id)
-      const emblem = getEmblem(lolStats[1].tier)
-      
-      setEmblem(emblem)   
-    } catch (error) {
-      setNotRanked("Not Ranked")
-    }
-  }  
   if (!lolProfile) {
     return <h1>Chargement...</h1>
   }
@@ -57,7 +57,10 @@ const UserCard = ({ id, username, summoner_name, discord, region, languages, dis
             <h5 className="card-title text-capitalize">{username}</h5>
             {emblem ? 
               <Emblem>
-                <img src={`${emblem}`} /> 
+                <img 
+                  src={`${emblem}`} 
+                  alt="emblem"
+                /> 
               </Emblem>
             :
               <div className='mx-5 fw-bold'>

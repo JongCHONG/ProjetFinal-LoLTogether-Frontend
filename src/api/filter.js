@@ -8,6 +8,7 @@ const getRegion = async () => {
     if (!options.find(element => element.value === element.region)) {
       options = [ ...options, { label: element.region, value: element.region } ]
     }
+    return options
   })
   return options
 }
@@ -21,7 +22,9 @@ const getLanguages = async () => {
       if (!options.find(element => element.value === languages)) {
         options = [ ...options, { label: languages, value: languages } ]
       }
+      return options
     })
+    return options
   })
   return options
 }
@@ -128,6 +131,7 @@ const getSelectedInfos = (selectedInfos) => {
     if (!options.find(element => element.value === element)) {
       options = [ ...options, { label: element, value: element } ]
     }
+    return options
   })
   return options
 }
@@ -137,6 +141,7 @@ const getValues = (newSelectedInfos) => {
 
   newSelectedInfos.map(element => {
     selectedInfosArray = [ ...selectedInfosArray, element.value ]
+    return selectedInfosArray
   })
   return selectedInfosArray
 }

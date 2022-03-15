@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 
 import styled from 'styled-components'
 
@@ -31,27 +31,27 @@ const Middle = styled.div`
 `
 
 const Teams = () => {
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const [teams, setTeams] = useState(null)
 
   useEffect(() => {
+    const getTeams = async () =>{
+      
+      const response = await fetch(`http://localhost:5000/teams/`, {
+        credentials: "include"
+      })
+      const data = await response.json()
+      if (data.error) {
+          // navigate('/login')
+        } else {
+          setTeams(data)
+      }
+    }
     getTeams()
   },[])
 
-  const getTeams = async () =>{
-    
-    const response = await fetch(`http://localhost:5000/teams/`, {
-      credentials: "include"
-    })
-    const data = await response.json()
-    if (data.error) {
-        navigate('/login')
-      } else {
-        setTeams(data)
-    }
-  }
   
-  console.log("users", teams)
+  console.log("teams", teams)
   return (
     <>
       <Nav />

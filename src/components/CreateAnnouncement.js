@@ -7,7 +7,7 @@ import { AnnouncementContext } from '../contexts/AnnouncementContext'
 import { getAnnouncementById } from '../api/announcement'
 
 const CreateAnnouncement = ({ onHide }) => {
-  const { user, setUser } = useContext(UserContext)
+  const { user } = useContext(UserContext)
   const [newAnnouncement, setNewAnnouncement] = useState(null)
   const { setAnnouncement } = useContext(AnnouncementContext)
 

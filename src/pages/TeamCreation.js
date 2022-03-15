@@ -3,7 +3,7 @@ import { MultiSelect } from "react-multi-select-component"
 import Select from 'react-select'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
-import { useNavigate, Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import { motion } from "framer-motion"
 import styled from 'styled-components'
 import { ProfileContext } from '../contexts/ProfileContent'
@@ -12,9 +12,9 @@ import {
     getRegion, 
     getLanguages, 
     getSelectedInfos, 
-    getValues, 
-    optionsRegions, 
-    optionsRoles, 
+    // getValues, 
+    // optionsRegions, 
+    // optionsRoles, 
     optionsDisponiblities 
   } from '../api/filter'
 
@@ -90,19 +90,19 @@ const TeamCreation = () => {
     const [selectedLanguages, setSelectedLanguages] = useState([])
     const [selectedDisponiblities, setSelectedDisponiblities] = useState([])
 
-    useEffect( async () => {
-        if (profile) {
+    useEffect(() => {
+        const getProfile = async () =>{
             setSelectedRegion([{ label: profile.region, value: profile.region }])
             const dataRegion = await getRegion()
             setOptionsRegion(dataRegion)
             const dataLanguages = await getLanguages()
             setOptionsLanguages(dataLanguages)
-            console.log("dataLanguages", dataLanguages)
             const userLanguages = getSelectedInfos(profile.languages)
             setSelectedLanguages(userLanguages)
             const userDisponibilities = getSelectedInfos(profile.disponibilities)
             setSelectedDisponiblities(userDisponibilities)
         }
+        getProfile()
     },[profile])
 
     const formik = useFormik({
@@ -115,8 +115,7 @@ const TeamCreation = () => {
         validateOnChange: false,
         validationSchema: Yup.object({
           name: Yup.string()
-            .required("Un nom de team est requis"),
-
+            .required("Un nom de team est requis")
         })
     })
 
@@ -184,7 +183,7 @@ const TeamCreation = () => {
                                         <Select
                                             className="form-control shadow"
                                             value={selectedRegion}
-                                            options={optionsRegions} 
+                                            options={optionsRegion} 
                                             onChange={setSelectedRegion}
                                         />
                                         {/* <MultiSelect

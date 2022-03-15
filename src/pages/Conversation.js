@@ -84,24 +84,24 @@ const Conversation = () => {
   const [sended, setIsSended] = useState(false)
 
   useEffect(() => {
+    const fetchConversation = async () => {
+      try {
+        let conversation = await getConversation(user._id, id)
+  
+        setConversation(conversation)
+      } catch (error) {
+        console.log(error)
+      }
+  
+      const profile = await getUserByID(id)
+      setProfile(profile)
+    }
     if (user) {
       fetchConversation()
       setIsSended(false)
     }
   },[id, user, sended])
 
-  const fetchConversation = async () => {
-    try {
-      let conversation = await getConversation(user._id, id)
-
-      setConversation(conversation)
-    } catch (error) {
-      console.log(error)
-    }
-
-    const profile = await getUserByID(id)
-    setProfile(profile)
-  }
 
   const handleTextarea = (e) => {
     setNewMessage(e.target.value)

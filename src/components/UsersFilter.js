@@ -27,17 +27,23 @@ const UsersFilter = () => {
   const [selectedDisponiblities, setSelectedDisponiblities] = useState([])
   const [selectedRoles, setSelectedRoles] = useState([])
   
-  useEffect( async () => {
-    const dataRegion = await getRegion()
-    setOptionsRegion(dataRegion)
-    const dataLanguages = await getLanguages()
-    setOptionsLanguages(dataLanguages)
+  useEffect(() => {
+    const getinfos = async () => {
+      const dataRegion = await getRegion()
+      setOptionsRegion(dataRegion)
+      const dataLanguages = await getLanguages()
+      setOptionsLanguages(dataLanguages)
+    }
+    getinfos()
   },[])
   
-  useEffect( async () => {
-    const data = await getFilteredUsers(selectedRegion, selectedLanguages, selectedDisponiblities, selectedRoles)
-    setUsers(data)
-  },[selectedRegion, selectedLanguages, selectedDisponiblities, selectedRoles])
+  useEffect(() => {
+    const getFiltered = async () => {
+      const data = await getFilteredUsers(selectedRegion, selectedLanguages, selectedDisponiblities, selectedRoles)
+      setUsers(data)
+    }
+    getFiltered()
+  },[selectedRegion, selectedLanguages, selectedDisponiblities, selectedRoles, setUsers])
 
   // console.log(selectedDisponiblities)
   return (

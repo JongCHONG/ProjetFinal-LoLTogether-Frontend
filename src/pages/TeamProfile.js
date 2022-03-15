@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { useParams, useNavigate } from 'react-router-dom'
+import { useParams } from 'react-router-dom'
 
 import moment from 'moment'
 import 'moment/locale/fr'
@@ -95,27 +95,25 @@ const Card =styled.div`
 
 const TeamProfile = () => {
   const { id } = useParams()
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const [teamProfile, setTeamProfile] = useState(null)
 
   useEffect(() => {
+    const getProfile = async () =>{
+      
+      const response = await fetch(`http://localhost:5000/teams/${id}`, {
+        credentials: "include"
+      })
+      const data = await response.json()
+      if (data.error) {
+        // navigate('/login')
+      } else {
+        setTeamProfile(data)
+      }
+    }
     getProfile()
   },[id])
-  
-  
-  const getProfile = async () =>{
     
-    const response = await fetch(`http://localhost:5000/teams/${id}`, {
-      credentials: "include"
-    })
-    const data = await response.json()
-    if (data.error) {
-      navigate('/login')
-    } else {
-      setTeamProfile(data)
-    }
-  }
-  
   if(!teamProfile) {
     return <h1>Chargement...</h1>
   }

@@ -57,13 +57,13 @@ const UserInfos = () => {
   const [modalShow, setModalShow] = useState(false)
 
   useEffect(() => {
+    const fetchAnnouncement = async () => {
+      const response = await getAnnouncementById(id)
+      setAnnouncement(response)
+    }
     fetchAnnouncement()
-  },[deleted])
+  },[deleted, setAnnouncement, id])
   
-  const fetchAnnouncement = async () => {
-    const response = await getAnnouncementById(id)
-    setAnnouncement(response)
-  }
   
   const handleModal = (param) => {
     setModalShow(true)

@@ -1,11 +1,11 @@
 import React, { useState, useContext } from 'react'
 import Modal from 'react-bootstrap/Modal'
 
-import { UserContext } from '../contexts/UserContext'
+// import { UserContext } from '../contexts/UserContext'
 import { ProfileContext } from '../contexts/ProfileContent'
 
 const EditDescription = ({ onHide }) => {
-  const { user, setUser } = useContext(UserContext)
+  // const { user, setUser } = useContext(UserContext)
   const { profile, setProfile } = useContext(ProfileContext)
   const [newDesciption, setNewDescription] = useState(profile.description)
 

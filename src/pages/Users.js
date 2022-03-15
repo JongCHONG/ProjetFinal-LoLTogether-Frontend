@@ -1,5 +1,5 @@
 import React, { useEffect, useContext } from 'react'
-import { useNavigate } from 'react-router-dom'
+// import { useNavigate } from 'react-router-dom'
 
 import styled from 'styled-components'
 import { motion } from "framer-motion"
@@ -50,23 +50,23 @@ const Middle = styled.div`
 `
 
 const Users = () => {
-  const navigate = useNavigate()
+  // const navigate = useNavigate()
   const { users, setUsers } = useContext(UsersContext)
 
   useEffect(() => {
-    fetchUsers()
-  },[])
-
-  const fetchUsers = async () => {
-    
-    const data = await getUsers()
-
-    if (data.error) {
-        navigate('/login')
-      } else {
-        setUsers(data)
+    const fetchUsers = async () => {
+      
+      const data = await getUsers()
+  
+      if (data.error) {
+          // navigate('/login')
+        } else {
+          setUsers(data)
+      }
     }
-  }
+    fetchUsers()
+  },[setUsers])
+
 
   if(!users) {
     return <h1>Chargement...</h1>

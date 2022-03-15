@@ -65,33 +65,33 @@ const UserProfile = () => {
   const [teamLeader, setTeamLeader] = useState(null)
 
   useEffect(() => {
+    const fetchUser = async () => {
+  
+      const profile = await getUserByID(id)
+      setProfile(profile)
+  
+      const lolProfile = await getLolProfile(profile.summoner_name)
+      setLolProfile(lolProfile)
+  
+      const lolStats = await getLolStats(lolProfile.id)
+      setLolStats(lolStats)
+  
+      if (lolStats.length !== 0 ) { 
+        const userEmblem = getEmblem(lolStats[1].tier)
+        setEmblem(userEmblem) 
+      }
+    }
+    const isLeader = async () => {
+      const teams = await getTeams()
+      const leader = teams.find(element => element.leader_id === id)
+  
+      setTeamLeader(leader)
+    }
     fetchUser()
     isLeader()
-  },[id, user])
+  },[id, user, setProfile])
 
-  const fetchUser = async () => {
 
-    const profile = await getUserByID(id)
-    setProfile(profile)
-
-    const lolProfile = await getLolProfile(profile.summoner_name)
-    setLolProfile(lolProfile)
-
-    const lolStats = await getLolStats(lolProfile.id)
-    setLolStats(lolStats)
-
-    if (lolStats.length !== 0 ) { 
-      const userEmblem = getEmblem(lolStats[1].tier)
-      setEmblem(userEmblem) 
-    }
-  }
-
-  const isLeader = async () => {
-    const teams = await getTeams()
-    const leader = teams.find(element => element.leader_id === id)
-
-    setTeamLeader(leader)
-  }
 
   if(!profile || !lolProfile || !lolStats) {
     return <h1>Chargement...</h1>

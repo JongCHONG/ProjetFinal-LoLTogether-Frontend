@@ -3,11 +3,11 @@ import { MultiSelect } from "react-multi-select-component"
 import Modal from 'react-bootstrap/Modal'
 import Select from 'react-select'
 
-import { UserContext } from '../contexts/UserContext'
+// import { UserContext } from '../contexts/UserContext'
 import { ProfileContext } from '../contexts/ProfileContent'
 
 import { 
-  getRegion, 
+  // getRegion, 
   getLanguages, 
   getSelectedInfos, 
   getValues, 
@@ -24,9 +24,9 @@ const SelectStyled = styled.div`
 `
 
 const EditUserInfos = ({ onHide }) => {
-  const { user, setUser } = useContext(UserContext)
+  // const { user, setUser } = useContext(UserContext)
   const { profile, setProfile } = useContext(ProfileContext)
-  const [optionsRegion, setOptionsRegion] = useState([])
+  // const [optionsRegion, setOptionsRegion] = useState([])
   const [selectedRegion, setSelectedRegion] = useState([])
   const [optionsLanguages, setOptionsLanguages] = useState([])
   const [selectedLanguages, setSelectedLanguages] = useState([])
@@ -35,19 +35,24 @@ const EditUserInfos = ({ onHide }) => {
 
 
 
-  useEffect( async () => {
-    setSelectedRegion([{ label: profile.region, value: profile.region }])
-    // const dataRegion = await getRegion()
-    // setOptionsRegion(dataRegion)
-    const dataLanguages = await getLanguages()
-    setOptionsLanguages(dataLanguages)
-    const userLanguages = getSelectedInfos(profile.languages)
-    setSelectedLanguages(userLanguages)
-    const userDisponibilities = getSelectedInfos(profile.disponibilities)
-    setSelectedDisponiblities(userDisponibilities)
-    const userRoles = getSelectedInfos(profile.roles)
-    setSelectedRoles(userRoles)
-  },[])
+  useEffect(() => {
+    if(profile) {
+      const getinfos = async () => {
+        setSelectedRegion([{ label: profile.region, value: profile.region }])
+        // const dataRegion = await getRegion()
+        // setOptionsRegion(dataRegion)
+        const dataLanguages = await getLanguages()
+        setOptionsLanguages(dataLanguages)
+        const userLanguages = getSelectedInfos(profile.languages)
+        setSelectedLanguages(userLanguages)
+        const userDisponibilities = getSelectedInfos(profile.disponibilities)
+        setSelectedDisponiblities(userDisponibilities)
+        const userRoles = getSelectedInfos(profile.roles)
+        setSelectedRoles(userRoles)
+      }
+      getinfos()
+    }
+  },[profile])
   
   const handleModifyInfos = () => {
     const newSelectedLanguages = getValues(selectedLanguages)

@@ -1,5 +1,5 @@
 import React from "react"
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom"
+import { Routes, Route, useLocation } from "react-router-dom"
 
 import { AnimatePresence } from "framer-motion"
 import 'bootstrap/dist/css/bootstrap.min.css'
