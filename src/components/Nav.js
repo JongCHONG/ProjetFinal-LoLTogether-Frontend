@@ -35,7 +35,6 @@ const MenuItem = styled.div`
   }
   button {
     background-color: rgba(0, 0, 0, 0.5);
-    border-radius: 10px; 
     border: none;
     color: white;
   }

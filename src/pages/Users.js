@@ -11,7 +11,7 @@ import UserFilter from '../components/UsersFilter'
 import UserCard from '../components/UserCard'
 import Footer from '../components/Footer'
 
-import backgroundImage from '../images/users-background.png'
+import backgroundImage from '../images/users-background.jpg'
 
 import { UsersContext } from '../contexts/UsersContext'
 import { getUsers } from '../api/user'
