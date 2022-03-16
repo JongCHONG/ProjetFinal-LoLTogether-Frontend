@@ -9,11 +9,11 @@ import styled from 'styled-components'
 import { ProfileContext } from '../contexts/ProfileContent'
 
 import { 
-    getRegion, 
+    // getRegion, 
     getLanguages, 
     getSelectedInfos, 
     // getValues, 
-    // optionsRegions, 
+    optionsRegions, 
     // optionsRoles, 
     optionsDisponiblities 
   } from '../api/filter'
@@ -84,7 +84,7 @@ const SelectStyled = styled.div`
 const TeamCreation = () => {
     const navigate = useNavigate()
     const { profile, setProfile } = useContext(ProfileContext)
-    const [optionsRegion, setOptionsRegion] = useState([])
+    // const [optionsRegion, setOptionsRegion] = useState([])
     const [selectedRegion, setSelectedRegion] = useState([])
     const [optionsLanguages, setOptionsLanguages] = useState([{}])
     const [selectedLanguages, setSelectedLanguages] = useState([])
@@ -93,8 +93,8 @@ const TeamCreation = () => {
     useEffect(() => {
         const getProfile = async () =>{
             setSelectedRegion([{ label: profile.region, value: profile.region }])
-            const dataRegion = await getRegion()
-            setOptionsRegion(dataRegion)
+            // const dataRegion = await getRegion()
+            // setOptionsRegion(dataRegion)
             const dataLanguages = await getLanguages()
             setOptionsLanguages(dataLanguages)
             const userLanguages = getSelectedInfos(profile.languages)
@@ -183,7 +183,7 @@ const TeamCreation = () => {
                                         <Select
                                             className="form-control shadow"
                                             value={selectedRegion}
-                                            options={optionsRegion} 
+                                            options={optionsRegions} 
                                             onChange={setSelectedRegion}
                                         />
                                         {/* <MultiSelect

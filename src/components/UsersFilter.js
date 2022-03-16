@@ -5,9 +5,8 @@ import styled from 'styled-components'
 
 import { UsersContext } from '../contexts/UsersContext'
 
-import { getRegion, getFilteredUsers, getLanguages } from '../api/filter'
-import { optionsDisponiblities } from '../api/filter'
-import { optionsRoles } from '../api/filter'
+import { getFilteredUsers, getLanguages } from '../api/filter'
+import { optionsDisponiblities, optionsRoles, optionsRegions } from '../api/filter'
 
 const SelectStyled = styled.div`
   color: black;
@@ -20,7 +19,7 @@ const FilterContainer = styled.div`
 
 const UsersFilter = () => {
   const { setUsers } = useContext(UsersContext)
-  const [optionsRegion, setOptionsRegion] = useState([])
+  // const [optionsRegion, setOptionsRegion] = useState([])
   const [selectedRegion, setSelectedRegion] = useState([])
   const [optionsLanguages, setOptionsLanguages] = useState([])
   const [selectedLanguages, setSelectedLanguages] = useState([])
@@ -29,8 +28,8 @@ const UsersFilter = () => {
   
   useEffect(() => {
     const getinfos = async () => {
-      const dataRegion = await getRegion()
-      setOptionsRegion(dataRegion)
+      // const dataRegion = await getRegion()
+      // setOptionsRegion(dataRegion)
       const dataLanguages = await getLanguages()
       setOptionsLanguages(dataLanguages)
     }
@@ -50,10 +49,10 @@ const UsersFilter = () => {
     <FilterContainer className='container'>
       <div className='row'>
         <div className='col-3 my-2 filter'>
-          <p>région</p>
+          <p>Région</p>
           <SelectStyled>
             <MultiSelect
-              options={optionsRegion}
+              options={optionsRegions}
               value={selectedRegion}
               onChange={setSelectedRegion}
               labelledBy="Select"
@@ -62,7 +61,7 @@ const UsersFilter = () => {
           </SelectStyled>
         </div>
         <div className='col-3 my-2 filter'>
-          <p>langue(s)</p>
+          <p>Langue(s)</p>
           <SelectStyled>
             <MultiSelect
               options={optionsLanguages}
@@ -74,7 +73,7 @@ const UsersFilter = () => {
           </SelectStyled>
         </div>
         <div className='col-3 my-2 filter'>
-          <p>disponibilités</p>
+          <p>Disponibilités</p>
           <SelectStyled>
             <MultiSelect
               options={optionsDisponiblities}
@@ -86,7 +85,7 @@ const UsersFilter = () => {
           </SelectStyled>
         </div>
         <div className='col-3 my-2 filter'>
-          <p>rôles</p>
+          <p>Rôles</p>
           <SelectStyled>
             <MultiSelect
               options={optionsRoles}

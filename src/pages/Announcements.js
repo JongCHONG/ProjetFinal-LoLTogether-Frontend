@@ -26,12 +26,10 @@ const Header = styled.div`
   positive: relative;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
 `
 const LogoTitle = styled.div`
-  left: 35%;
-  top: 20%;
-  position: absolute;
   font-size: 20px;
   width: 31%;
   .p2 {

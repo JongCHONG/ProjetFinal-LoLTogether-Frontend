@@ -24,29 +24,16 @@ const Header = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 `
 const LogoTitle = styled.div`
   width: 45%;
-  margin-top: 5%;
   font-size: 20px;
-  .p2 {
-    font-size: 15px;
-  }
-  @media (max-width: 1000px) {
-    margin-top: 10%
-  }
-  @media (max-width: 800px) {
-    margin-top: 15%
-  }
-  @media (max-width: 800px) {
-    margin-top: 20%
-  }
 `
 const Middle = styled.div`
   background-color: black;
   display: flex;
   justify-content: space-between;
-  // margin: auto;
 `
 
 const Users = () => {

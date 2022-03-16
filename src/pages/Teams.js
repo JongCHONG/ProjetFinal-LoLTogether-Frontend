@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 // import { useNavigate } from 'react-router-dom'
 
 import styled from 'styled-components'
+import { motion } from "framer-motion"
 
 import Nav from '../components/Nav'
 import Logo from '../components/Logo'
 import Title from '../components/Title'
 import Footer from '../components/Footer'
+import TeamCard from '../components/TeamCard'
 
 import backgroundImage from '../images/policy-background.png'
 
@@ -18,12 +20,12 @@ const Header = styled.div`
   positive: relative;
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
+  justify-content: center;
+  align-items: center;
 `
-const Separator = styled.div`
-  background-repeat: no-repeat;
-  background-size: cover;
-  height: 160px;
+const LogoTitle = styled.div`
+  width: 45%;
+  font-size: 20px;
 `
 const Middle = styled.div`
   background-color: black;
@@ -56,13 +58,30 @@ const Teams = () => {
     <>
       <Nav />
       <Header>
-        <Logo /> 
-          <Title text="Page en construction" size='72'/>
-        <Separator />
+        <LogoTitle>
+          <motion.div
+            style={{ x: 100 }} 
+            animate={{ x: 0 }}          
+          >
+            <Logo />
+            <Title text="Liste des joueurs" size='64'/>
+          </motion.div>
+        </LogoTitle>
       </Header>
       <Middle>
         <div className='container'>
-          {/* Test */}
+          <motion.div
+            style={{ x: -100 }} 
+            animate={{ x: 0 }}          
+          >
+            <div className='row d-flex justify-content-around'>
+              {teams.map(element => (
+                <TeamCard
+                  key={element._id}
+                />
+              ))}
+            </div>
+          </motion.div>
         </div>
       </Middle>
       <Footer />

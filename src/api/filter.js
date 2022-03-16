@@ -1,17 +1,17 @@
 import { getUsers } from "./user"
 
-const getRegion = async () => {
-  let options = []
+// const getRegion = async () => {
+//   let options = []
 
-  const users = await getUsers()
-  users.map(element => {
-    if (!options.find(element => element.value === element.region)) {
-      options = [ ...options, { label: element.region, value: element.region } ]
-    }
-    return options
-  })
-  return options
-}
+//   const users = await getUsers()
+//   users.map(element => {
+//     if (!options.find(element => element.value === element.region)) {
+//       options = [ ...options, { label: element.region, value: element.region } ]
+//     }
+//     return options
+//   })
+//   return options
+// }
 
 const getLanguages = async () => {
   let options = []
@@ -147,7 +147,7 @@ const getValues = (newSelectedInfos) => {
 }
 
 export {
-  getRegion,
+  // getRegion,
   getFilteredUsers,
   getLanguages,
   getSelectedInfos,
